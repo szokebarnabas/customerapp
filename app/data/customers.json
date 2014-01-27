@@ -1,0 +1,16 @@
+[
+ {
+  "id": "1",
+  "name": "John Doe",
+  "age": "28",
+  "address": "Budapest, Mester street 23",
+  "phone": "234223434345"
+ },
+ {
+  "id": "2",
+  "name": "Jane Doe",
+  "age": "29",
+  "address": "Budapest, Üllői street 12.",
+  "phone": "2342343491345"
+ }
+]

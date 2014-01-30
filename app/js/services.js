@@ -5,15 +5,10 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('myApp.services', []).
+angular.module('myApp.services', ['ngResource']).
 value('version', '0.1')
-.factory('Books', ['$http', function($http){
-	return{
-		get: function(callback){
-			$http.get('data/customers.json').success(function(data) {
-          // prepare data here
-          callback(data);
-      });
-		}
-	};
+.factory('CustomerDataService', ['$resource', function($resource){
+	return $resource('data/:phoneId.json', {}, {
+		query: {method:'GET', params:{phoneId:'customers'}, isArray:true}
+	})
 }]);

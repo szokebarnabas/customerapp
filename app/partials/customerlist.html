@@ -1,8 +1,10 @@
-<table class="table">
-    <tr ng-repeat="customer in customers | filter:query | orderBy:name">
-        <td>{{ customer.name }}</td>
-        <td>{{ customer.age }}</td>
-        <td>{{ customer.address }}</td>
-        <td>{{ customer.phone }}</td>
+<p><strong>Page:</strong> {{tableParams.page()}}</p>
+<p><strong>Count per page:</strong> {{tableParams.count()}}</p>
+<table ng-table class="table">
+	<tr ng-repeat="customer in customers">
+            <td data-title="'First name'">{{customer.firstName}}</td>
+            <td data-title="'Last name'">{{customer.lastName}}</td>
+            <td data-title="'Age'">{{customer.age}}</td>
+            <td data-title="'City'">{{customer.address.city}}</td>
     </tr>
 </table>

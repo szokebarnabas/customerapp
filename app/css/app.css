@@ -28,3 +28,14 @@
   content: "";
   padding: 0;
 }
+
+/*style.css*/
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    height: 300px;
+    font-family: Helvetica;
+    font-size: 75%;
+}
+
+.align-center { text-align: center; }
+.align-right { text-align: right; }

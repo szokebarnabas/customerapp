@@ -10,6 +10,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -25,7 +26,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="#/customers/new">New Customer</a></li>
-				<li><a href="#/customers/list">List of customers</a></li>
+				<li><a href="#/customers">List of customers</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<form class="navbar-form navbar-left" role="search">
@@ -36,13 +37,12 @@
 				</form>
 			</ul>
 		</div><!-- /.navbar-collapse -->
+		</div>
 	</nav>
 	<div class="container">
 		<div ng-view></div>
 	</div>
 	
-	<div>Angular customer app: v<span app-version></span></div>
-
 	<script src="lib/bootstrap/js/bootstrap.js"></script>
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-route.js"></script>

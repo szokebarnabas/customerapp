@@ -10,7 +10,9 @@ angular.module('myApp', [
 	'myApp.controllers',
 	]).
 config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/customers/list', {templateUrl: 'partials/customerlist.html', controller: 'CustomerListCtrl'});
-	$routeProvider.when('/customers/new', {templateUrl: 'partials/newcustomer.html', controller: 'NewCustomerCtrl'});
-	$routeProvider.otherwise({redirectTo: '/customers/list'});
+	$routeProvider.when('/customers', {templateUrl: 'partials/CustomerList.html', controller: 'CustomerListCtrl'});
+	$routeProvider.when('/customers/new', {templateUrl: 'partials/NewCustomer.html', controller: 'NewCustomerCtrl'});
+	$routeProvider.when('/customers/:customerId/edit', {templateUrl: 'partials/EditCustomer.html', controller: 'EditCustomerCtrl'});
+	$routeProvider.when('/customers/:customerId', {templateUrl: 'partials/CustomerDetails.html', controller: 'CustomerDetailsCtrl'});
+	$routeProvider.otherwise({redirectTo: '/customers'});
 }]);

@@ -2,44 +2,62 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', /*['ngGrid']*/['ngTable'])
-.controller('CustomerListCtrl', ['$scope','$filter','ngTableParams', function($scope, $filter, ngTableParams) {
-    var data = [{name: "Moroni", age: 50},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 34},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 34},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 34},
-                {name: "Tiancum", age: 43},
-                {name: "Jacob", age: 27},
-                {name: "Nephi", age: 29},
-                {name: "Enos", age: 34}];
-    $scope.tableParams = new ngTableParams({
+angular.module('myApp.controllers', ['ngTable'])
+.controller('CustomerListCtrl', ['$scope','$filter','ngTableParams','CustomerDataService', function($scope, $filter, ngTableParams, CustomerDataService) {
+
+	$scope.tableParams = new ngTableParams({
         page: 1,            // show first page
         count: 10,           // count per page
         sorting: {
             name: 'asc'     // initial sorting
         }
     }, {
-        total: data.length, // length of data
+        total: 0, // length of data
         getData: function($defer, params) {
-            //$defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-            var orderedData = params.sorting() ?
-                                $filter('orderBy')(data, params.orderBy()) :
-                                data;
-            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        	CustomerDataService.query(function(events){
+
+        		var searchedData = searchData(events);
+        		params.total(searchedData.length);
+
+        		var orderedData = params.sorting() ? $filter('orderBy')(searchedData, params.orderBy()) : searchedData;
+
+        		$scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+            	$defer.resolve($scope.users);   
+        	});
         }
     });
 
+	$scope.delete = function(param) {
+		alert('delete id:' + param);
+	};
+
+
+	$scope.$watch("searchUser", function () {
+		$scope.tableParams.reload();
+	});
+
+	var searchData = function(data){
+		if($scope.searchUser)
+			return $filter('filter')(data,$scope.searchUser);
+		return data;
+	}
 
 }])
-.controller('NewCustomerCtrl', [function() {
+.controller('NewCustomerCtrl', ['$scope', function($scope) {
+	$scope.submitForm = function() {
 
+			// check to make sure the form is completely valid
+			if ($scope.customerForm.$valid) {
+				alert('our form is amazing');
+			}
+
+		};
+	}])
+.controller('EditCustomerCtrl', ['$scope','$routeParams', function($scope, $routeParams) {
+	$scope.customerId = $routeParams.customerId;
+}])
+.controller('CustomerDetailsCtrl', ['$scope','$routeParams','CustomerDataService', function($scope, $routeParams, CustomerDataService) {
+	//$scope.customerId = $routeParams.customerId;
+	$scope.readMode = true;
+	$scope.customer = CustomerDataService.get({customerId: 'customer' + $routeParams.customerId});
 }]);

@@ -11,7 +11,7 @@ Technologies:
     - AngularJS 1.2.9
     - ngTable 0.3.1
     
-  - Servier side
+  - Server side
     - Spring Framework 3.2.0
 
 

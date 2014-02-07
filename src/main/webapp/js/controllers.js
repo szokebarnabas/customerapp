@@ -42,14 +42,14 @@ angular.module('myApp.controllers', ['ngTable'])
 	}
 
 }])
-.controller('NewCustomerCtrl', ['$scope','CustomerDataService', function($scope, CustomerDataService) {
+.controller('NewCustomerCtrl', ['$scope','CustomerDataService','$location', function($scope, CustomerDataService, $location) {
 	$scope.readMode = false;
 	$scope.customer = new CustomerDataService();
-	
 	$scope.createNewUser = function() {
 		
+		$scope.customer.id = $scope.customer.firstName + '_' + $scope.customer.lastName;
 		$scope.customer.$save(function() {
-			
+			$location.path('/');
 		});
 		
 			/*if ($scope.customerForm.$valid) {
@@ -59,17 +59,23 @@ angular.module('myApp.controllers', ['ngTable'])
 
 		};
 	}])
-.controller('EditCustomerCtrl', ['$scope','$routeParams', function($scope, $routeParams) {
-	$scope.customerId = $routeParams.customerId;
-}])
-.controller('DeleteCustomerCtrl', ['$scope','$routeParams','CustomerDataService', function($scope, $routeParams, CustomerDataService) {
-	alert("del. id : " + $routeParams.customerId);
-	CustomerDataService.delete({customerId: $routeParams.customerId}, function() {
+.controller('EditCustomerCtrl', ['$scope','$routeParams','CustomerDataService','$location', function($scope, $routeParams, CustomerDataService, $location) {
+	$scope.customer = CustomerDataService.get({customerId: $routeParams.customerId});
+	$scope.editUser = function() {
 		
+		$scope.customer.id = $scope.customer.firstName + '_' + $scope.customer.lastName;
+		$scope.customer.$update({customerId: $routeParams.customerId, command: 'modify'}, function() {
+			$location.path('/');
+		});
+	};
+}])
+.controller('DeleteCustomerCtrl', ['$scope','$routeParams','CustomerDataService','$location', function($scope, $routeParams, CustomerDataService, $location) {
+	alert("del. id : " + $routeParams.customerId);
+	CustomerDataService.delete({customerId: $routeParams.customerId, command: 'delete'}, function() {
+		$location.path('/');
 	});
 }])
 .controller('CustomerDetailsCtrl', ['$scope','$routeParams','CustomerDataService', function($scope, $routeParams, CustomerDataService) {
-	//$scope.customerId = $routeParams.customerId;
 	$scope.readMode = true;
-	$scope.customer = CustomerDataService.get({customerId: 'customer' + $routeParams.customerId});
+	$scope.customer = CustomerDataService.get({customerId: $routeParams.customerId});
 }]);

@@ -5,17 +5,6 @@
 
 				<!-- Form Name -->
 				<legend>New customer</legend>
-				
-				<!-- Text input-->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="textinput">id</label>
-					<div class="col-md-4">
-						<input id="textinput" name="textinput" type="text"
-							class="form-control input-md" ng-model="customer.id"
-							ng-readonly="readMode">
-					</div>
-				</div>
-				
 
 				<!-- Text input-->
 				<div class="form-group">
@@ -54,7 +43,8 @@
 					<label class="col-md-4 control-label" for="textinput">Street</label>
 					<div class="col-md-4">
 						<input id="textinput" name="textinput" type="text"
-							class="form-control input-md" ng-readonly="readMode">
+							class="form-control input-md" ng-model="customer.address.street"
+							ng-readonly="readMode">
 					</div>
 				</div>
 
@@ -63,7 +53,7 @@
 					<label class="col-md-4 control-label" for="textinput">City</label>
 					<div class="col-md-4">
 						<input id="textinput" name="textinput" type="text"
-							class="form-control input-md" ng-model="customer.city"
+							class="form-control input-md" ng-model="customer.address.city"
 							ng-readonly="readMode">
 					</div>
 				</div>
@@ -73,7 +63,8 @@
 					<label class="col-md-4 control-label" for="textinput">State</label>
 					<div class="col-md-4">
 						<input id="textinput" name="textinput" type="text"
-							class="form-control input-md" ng-readonly="readMode">
+							class="form-control input-md" ng-model="customer.address.state"
+							ng-readonly="readMode">
 					</div>
 				</div>
 
@@ -83,7 +74,8 @@
 						code</label>
 					<div class="col-md-4">
 						<input id="textinput" name="textinput" type="text"
-							class="form-control input-md" ng-readonly="readMode">
+							class="form-control input-md"
+							ng-model="customer.address.postalCode" ng-readonly="readMode">
 					</div>
 				</div>
 
@@ -92,18 +84,18 @@
 					<label class="col-md-4 control-label" for="textinput">Phone</label>
 					<div class="col-md-4">
 						<input id="textinput" name="textinput" type="text"
-							class="form-control input-md" ng-readonly="readMode">
+							class="form-control input-md" ng-model="customer.phone"
+							ng-readonly="readMode">
 					</div>
 				</div>
 
 
 				<div class="form-group">
 					<div class="col-md-4">
-						<a ng-click="createNewUser()" class="btn btn-small btn-primary">create new user</a>
+						<a ng-click="createNewUser()" class="btn btn-small btn-primary">Save</a>
 					</div>
 				</div>
 			</fieldset>
 		</form>
-
 	</div>
 </div>

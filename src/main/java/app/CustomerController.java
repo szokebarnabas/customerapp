@@ -21,31 +21,53 @@ public class CustomerController {
 
 	public CustomerController() {
 		customerList = new ArrayList<Customer>();
+		customerList.add(new Customer("jonn_doe", "John", "Doe", 28, new Address("New York", "street1", "state1", "34234"), "161968143514"));
+		customerList.add(new Customer("jane_doe", "Jane", "Doe", 34, new Address("London", "street2", "-", "35452"), "34534534535"));
+		customerList.add(new Customer("billy_bob", "Billy", "Bob", 33, new Address("Toronto", "street3", "state2", "46235"), "63623523525"));
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody
-	List<Customer> getCustomerList() {
+	@ResponseBody
+	public List<Customer> getCustomerList() {
 		return customerList;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public @ResponseBody
-	void addCustomer(@RequestBody Customer customer) {
+	@ResponseBody
+	public void addCustomer(@RequestBody Customer customer) {
 		customerList.add(customer);
 	}
 
-	@RequestMapping(value = "/{customerId}", method = RequestMethod.DELETE)
-	public @ResponseBody
-	void deleteCustomer(@PathVariable int customerId) {
-		for (Iterator<Customer> iterator = customerList.iterator(); iterator
-				.hasNext();) {
+	@RequestMapping(value = "/{customerId}/delete", method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public void deleteCustomer(@PathVariable String customerId) {
+		for (Iterator<Customer> iterator = customerList.iterator(); iterator.hasNext();) {
 			Customer customer = iterator.next();
-			if (customer.getId().equals(String.valueOf(customerId))) {
+			if (customer.getId().equals(customerId)) {
 				iterator.remove();
 			}
 		}
+	}
+
+	@RequestMapping(value = "/{customerId}/modify", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public void modifyCustomer(@PathVariable String customerId, @RequestBody Customer customer) {
+		System.out.println("modify customer");
+	}
+
+	@RequestMapping(value = "/{customerId}", method = RequestMethod.GET)
+	@ResponseBody
+	public Customer getCustomer(@PathVariable String customerId) {
+		for (Iterator<Customer> iterator = customerList.iterator(); iterator.hasNext();) {
+			Customer customer = iterator.next();
+			if (customer.getId().equals(String.valueOf(customerId))) {
+				return customer;
+			}
+		}
+		return null;
 	}
 
 }

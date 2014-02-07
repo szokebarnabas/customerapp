@@ -27,7 +27,7 @@
 				<td data-title="'First name'" sortable="'firstName'">{{user.firstName}}</td>
 				<td data-title="'Last name'" sortable="'lastName'">{{user.lastName}}</td>
 				<td data-title="'Age'" sortable="'age'">{{user.age}}</td>
-				<td data-title="'City'" sortable="'city'">{{user.city}}</td>
+				<td data-title="'City'" sortable="'city'">{{user.address.city}}</td>
 				<td style="width: 90px">
 					<button go-click="/customers/{{user.id}}/edit" class="btn btn-info btn-sm">
 						<span class="glyphicon glyphicon-edit"></span>

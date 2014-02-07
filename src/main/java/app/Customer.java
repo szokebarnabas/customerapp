@@ -1,30 +1,26 @@
 package app;
 
-import java.io.Serializable;
+public class Customer {
 
-public class Customer implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7859527843494798767L;
 	private String id;
 	private String firstName;
 	private String lastName;
 	private int age;
-	private String city;
-	
+	private Address address;
+	private String phone;
+
 	public Customer() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(String id, String firstName, String lastName, int age,
-			String city) {
+	public Customer(String id, String firstName, String lastName, int age, Address address, String phone) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
-		this.city = city;
+		this.address = address;
+		this.phone = phone;
 	}
 
 	public String getId() {
@@ -59,12 +55,19 @@ public class Customer implements Serializable {
 		this.age = age;
 	}
 
-	public String getCity() {
-		return city;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public Address getAddress() {
+		return address;
 	}
 
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
 }

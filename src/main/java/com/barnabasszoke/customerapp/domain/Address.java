@@ -1,4 +1,4 @@
-package app;
+package com.barnabasszoke.customerapp.domain;
 
 public class Address {
 

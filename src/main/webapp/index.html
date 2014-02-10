@@ -20,6 +20,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">CustomerRegister</a>
+			 
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,6 +41,9 @@
 		</div>
 	</nav>
 	<div class="container">
+	<div class="alert alert-success" ng-show="authenticated">
+                You are logged in as user "Admin".
+            </div>
 		<div ng-view></div>
 	</div>
 	
@@ -55,6 +59,7 @@
 	<script src="js/controllers.js"></script>
 	<script src="js/filters.js"></script>
 	<script src="js/directives.js"></script>
+	<script src="js/http-auth-interceptor.js"></script>
 	
 </body>
 </html>

@@ -26,8 +26,10 @@ angular.module('myApp.controllers', ['ngTable'])
         }
     });
 
-	$scope.delete = function(param) {
-		alert('delete id:' + param);
+	$scope.deleteCustomer = function(id) {
+		CustomerDataService.delete({customerId: id, command: 'delete'}, function() {
+			$scope.tableParams.reload();
+		});
 	};
 
 
@@ -78,4 +80,29 @@ angular.module('myApp.controllers', ['ngTable'])
 .controller('CustomerDetailsCtrl', ['$scope','$routeParams','CustomerDataService', function($scope, $routeParams, CustomerDataService) {
 	$scope.readMode = true;
 	$scope.customer = CustomerDataService.get({customerId: $routeParams.customerId});
-}]);
+}])
+
+
+.controller('LoginController', ['$scope', '$location', 'AuthenticationSharedService',
+    function ($scope, $location, AuthenticationSharedService) {
+        $scope.rememberMe = true;
+        $scope.login = function () {
+            AuthenticationSharedService.login({
+                username: $scope.username,
+                password: $scope.password,
+                rememberMe: $scope.rememberMe,
+                success: function () {
+                    $location.path('');
+                }
+            })
+        }
+    }])
+    
+.controller('LogoutController', ['$location', 'AuthenticationSharedService',
+    function ($location, AuthenticationSharedService) {
+        AuthenticationSharedService.logout({
+            success: function () {
+                $location.path('');
+            }
+        });
+    }]);

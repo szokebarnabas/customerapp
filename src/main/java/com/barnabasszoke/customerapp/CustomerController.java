@@ -1,4 +1,4 @@
-package app;
+package com.barnabasszoke.customerapp;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.barnabasszoke.customerapp.domain.Address;
+import com.barnabasszoke.customerapp.domain.Customer;
 
 @Controller
 @RequestMapping("/customers")
@@ -55,7 +58,14 @@ public class CustomerController {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public void modifyCustomer(@PathVariable String customerId, @RequestBody Customer customer) {
-		System.out.println("modify customer");
+		for (Iterator<Customer> iterator = customerList.iterator(); iterator.hasNext();) {
+			Customer c = iterator.next();
+			if (c.getId().equals(String.valueOf(customerId))) {
+				iterator.remove();
+				customerList.add(customer);
+				return;
+			}
+		}
 	}
 
 	@RequestMapping(value = "/{customerId}", method = RequestMethod.GET)

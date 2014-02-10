@@ -13,6 +13,7 @@ Technologies:
     
   - Server side
     - Spring Framework 3.2.0
+    - Spring Security 3.2
 
 
 Building

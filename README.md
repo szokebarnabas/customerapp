@@ -28,5 +28,5 @@ You can run the webapp in Jetty with <pre><code>mvn jetty:run</code></pre>
 
 After it the app is available at http://localhost:8080
 
-username: user
+username: user<br/>
 password: user

@@ -1,7 +1,7 @@
 Customer register
 =================
 
-The purpose of this app is to integrate AngularJS and Spring MVC via RESTful Web Service.
+The purpose of this app is to integrate AngularJS and Spring MVC via RESTful Web Service and to learn the technologies listed below.
 
 Technologies:
 

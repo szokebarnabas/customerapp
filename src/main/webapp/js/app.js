@@ -27,12 +27,17 @@ angular.module(
 		templateUrl : '/partials/CustomerDetails.html',
 		controller : 'CustomerDetailsCtrl'
 	});
-	$routeProvider.when('/login', {
+	$routeProvider.when('/account/login', {
 		templateUrl : '/partials/login.html',
 		controller : 'LoginController'
-	})
+	});
+	$routeProvider.when('/account/logout', {
+         templateUrl: '/partials/main.html',
+         controller: 'LogoutController'
+     })
 	$routeProvider.otherwise({
-		redirectTo : '/customers'
+		templateUrl: '/partials/main.html',
+        controller: 'MainController'
 	});
 } ])
 .run(['$rootScope', '$location', 'AuthenticationSharedService', 'Account',
@@ -64,7 +69,7 @@ angular.module(
             $rootScope.$on('event:auth-loginRequired', function(rejection) {
                 $rootScope.authenticated = false;
                 if ($location.path() !== "/" && $location.path() !== "") {
-                    $location.path('/login').replace();
+                    $location.path('/account/login').replace();
                 }
             });
 
@@ -75,7 +80,7 @@ angular.module(
 
                // If the login page has been requested and the user is already logged in
                // the user is redirected to the home page
-               if ($location.path() === "/login") {
+               if ($location.path() === "/account/login") {
                    $location.path('/').replace();
                }
             });

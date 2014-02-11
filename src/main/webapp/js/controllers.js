@@ -105,4 +105,7 @@ angular.module('myApp.controllers', ['ngTable'])
                 $location.path('');
             }
         });
-    }]);
+    }])
+
+.controller('MainController', ['$scope', function ($scope) {
+}]);

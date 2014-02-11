@@ -75,12 +75,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-            .antMatchers("/bower_components/**")
-            .antMatchers("/fonts/**")
-            .antMatchers("/images/**")
-            .antMatchers("/scripts/**")
-            .antMatchers("/styles/**")
-            .antMatchers("/view/**");
+            .antMatchers("/css/**")
+            .antMatchers("/img/**")
+            .antMatchers("/js/**")
+            .antMatchers("/lib/**")
+            .antMatchers("/partials/**");
     }
 
     @Override
@@ -94,7 +93,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .key(env.getProperty("jhipster.security.rememberme.key"))
                 .and()*/
             .formLogin()
-                .loginProcessingUrl("/api/authentication")
+                .loginProcessingUrl("/api/account/authentication")
                 .successHandler(ajaxAuthenticationSuccessHandler)
                 .failureHandler(ajaxAuthenticationFailureHandler)
                 .usernameParameter("j_username")
@@ -102,7 +101,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
-                .logoutUrl("/api/logout")
+                .logoutUrl("/api/account/logout")
                 .logoutSuccessHandler(ajaxLogoutSuccessHandler)
                 .deleteCookies("JSESSIONID")
                 .permitAll()
@@ -111,8 +110,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .disable()
             .authorizeRequests()
                 .antMatchers("/*").permitAll()
-                .antMatchers("/api/rest/authenticate").permitAll()
-                .antMatchers("/api/rest/logs/**").hasRole("ADMIN")
+                .antMatchers("/api/account/authenticate").permitAll()
+                .antMatchers("/api/account/logs/**").hasRole("ADMIN")
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/websocket/tracker").hasRole("ADMIN")
                 .antMatchers("/websocket/**").permitAll()

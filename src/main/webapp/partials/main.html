@@ -1,0 +1,20 @@
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 translate="main.title">Welcome to the CustomerRegister</h1>
+
+            <div class="alert alert-success" ng-show="authenticated"
+                 translate="main.logged.message" translate-values="{username: '{{account.login}}'}">
+                You are logged in as user {{account.login}}.
+            </div>
+
+            <div class="alert alert-warning" ng-hide="authenticated" translate="main.logged.authenticated">
+                <p class="lead">Authentication</p>
+                <p>
+                User role: user/user<br/>
+                Admin role: admin/admin
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

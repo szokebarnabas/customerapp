@@ -15,19 +15,19 @@ angular.module('myApp.services', ['ngResource'])
 }])
 .factory('Account', ['$resource',
     function ($resource) {
-        return $resource('api/rest/account', {}, {
+        return $resource('api/account', {}, {
         });
     }])
 
 .factory('Password', ['$resource',
     function ($resource) {
-        return $resource('api/rest/account/change_password', {}, {
+        return $resource('api/account/change_password', {}, {
         });
     }])
 
 .factory('Sessions', ['$resource',
     function ($resource) {
-        return $resource('api/rest/account/sessions/:series', {}, {
+        return $resource('api/account/sessions/:series', {}, {
             'get': { method: 'GET', isArray: true}
         });
     }])
@@ -37,7 +37,7 @@ angular.module('myApp.services', ['ngResource'])
                                                     function ($rootScope, $http, authService) {
                                                         return {
                                                             authenticate: function() {
-                                                                $http.get('api/rest/authenticate')
+                                                                $http.get('api/account/authenticate')
                                                                     .success(function (data, status, headers, config) {
                                                                         $rootScope.login = data;
                                                                         if (data == '') {
@@ -49,7 +49,7 @@ angular.module('myApp.services', ['ngResource'])
                                                             },
                                                             login: function (param) {
                                                                 var data ="j_username=" + param.username +"&j_password=" + param.password +"&_spring_security_remember_me=" + param.rememberMe +"&submit=Login";
-                                                                $http.post('api/authentication', data, {
+                                                                $http.post('api/account/authentication', data, {
                                                                     headers: {
                                                                         "Content-Type": "application/x-www-form-urlencoded"
                                                                     },
@@ -70,7 +70,7 @@ angular.module('myApp.services', ['ngResource'])
                                                             },
                                                             logout: function () {
                                                                 $rootScope.authenticationError = false;
-                                                                $http.get('api/logout')
+                                                                $http.get('api/account/logout')
                                                                     .success(function (data, status, headers, config) {
                                                                         $rootScope.login = null;
                                                                         authService.loginCancelled();

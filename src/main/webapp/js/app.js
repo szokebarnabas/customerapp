@@ -4,7 +4,7 @@
 angular.module(
 		'myApp',
 		[ 'http-auth-interceptor', 'ngResource', 'ngRoute', 'myApp.filters',
-				'myApp.services', 'myApp.directives', 'myApp.controllers', ])
+				'myApp.services', 'myApp.directives', 'myApp.controllers'])
 
 .config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/customers', {

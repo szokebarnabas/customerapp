@@ -32,6 +32,12 @@ public class CustomerController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<Customer> getCustomerList() {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return customerList;
 	}
 

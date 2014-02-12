@@ -4,6 +4,7 @@
 
 angular.module('myApp.controllers', ['ngTable'])
 .controller('CustomerListCtrl', ['$scope','$filter','ngTableParams','CustomerDataService', function($scope, $filter, ngTableParams, CustomerDataService) {
+	$scope.viewLoading = true;
 	$scope.tableParams = new ngTableParams({
         page: 1,            // show first page
         count: 10,           // count per page
@@ -21,7 +22,8 @@ angular.module('myApp.controllers', ['ngTable'])
         		var orderedData = params.sorting() ? $filter('orderBy')(searchedData, params.orderBy()) : searchedData;
 
         		$scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-            	$defer.resolve($scope.users);   
+            	$defer.resolve($scope.users);
+            	$scope.viewLoading = false;
         	});
         }
     });

@@ -10,6 +10,8 @@ Technologies:
     - AngularJS-Seed
     - AngularJS 1.2.9
     - ngTable 0.3.1
+    - Spin.js for long running REST requests
+    - HTTP Auth Interceptor Module
     
   - Server side
     - Spring Framework 3.2.0

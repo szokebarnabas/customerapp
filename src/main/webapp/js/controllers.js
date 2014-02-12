@@ -108,4 +108,8 @@ angular.module('myApp.controllers', ['ngTable'])
     }])
 
 .controller('MainController', ['$scope', function ($scope) {
+}])
+
+.controller('AboutController', ['$scope', function ($scope) {
 }]);
+

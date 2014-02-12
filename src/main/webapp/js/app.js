@@ -26,6 +26,7 @@ angular.module(
 	$routeProvider.when('/customers/:customerId', {
 		templateUrl : '/partials/CustomerDetails.html',
 		controller : 'CustomerDetailsCtrl'
+			
 	});
 	$routeProvider.when('/account/login', {
 		templateUrl : '/partials/login.html',
@@ -34,14 +35,19 @@ angular.module(
 	$routeProvider.when('/account/logout', {
          templateUrl: '/partials/main.html',
          controller: 'LogoutController'
-     })
+    });
+	$routeProvider.when('/about', {
+        templateUrl: '/partials/about.html',
+        controller: 'AboutController',
+        auth: false
+   });
 	$routeProvider.otherwise({
 		templateUrl: '/partials/main.html',
         controller: 'MainController'
 	});
 } ])
-.run(['$rootScope', '$location', 'AuthenticationSharedService', 'Account',
-            function($rootScope, $location, AuthenticationSharedService, Account) {
+.run(['$rootScope', '$location', 'AuthenticationSharedService', 'Account','$route',
+            function($rootScope, $location, AuthenticationSharedService, Account,$route) {
             $rootScope.hasRole = function(role) {
                 if ($rootScope.account === undefined) {
                     return false;
@@ -67,8 +73,9 @@ angular.module(
 
             // Call when the 401 response is returned by the client
             $rootScope.$on('event:auth-loginRequired', function(rejection) {
+            	var authRequired = $route.current.auth == undefined || $route.current.auth != false;
                 $rootScope.authenticated = false;
-                if ($location.path() !== "/" && $location.path() !== "") {
+                if (authRequired == true && $location.path() !== "/" && $location.path() !== "") {
                     $location.path('/account/login').replace();
                 }
             });

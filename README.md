@@ -14,7 +14,7 @@ Technologies:
     - HTTP Auth Interceptor Module
     
   - Server side
-    - Spring Framework 3.2.0
+    - Spring Framework 4.0.1
     - Spring Security 3.2
 
 

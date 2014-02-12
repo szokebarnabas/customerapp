@@ -24,5 +24,15 @@ public class UserService {
         //currentUser.getAuthorities().size(); // eagerly load the association
         return currentUser;
     }
+
+	public void updateUserInformation(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void changePassword(String password) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

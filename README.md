@@ -32,6 +32,3 @@ After it the app is available at http://localhost:8080
 
 username: user<br/>
 password: user
-
-I used the following great project to integrate Spring Security with AngularJS:
-https://github.com/jhipster/jhipster-sample-app
